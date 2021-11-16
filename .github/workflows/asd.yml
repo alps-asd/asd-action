@@ -1,19 +1,20 @@
-on: [push]
+name: "ASD documents"
+
+on:
+  ["push", "workflow_dispatch"]
 
 jobs:
-  hello_world_job:
+  asd:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: ASD documents
     steps:
       # このリポジトリのプライベートアクションを使用するには
       # リポジトリをチェックアウトする
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Hello world action step
+
+      - name: Generates ASD documents
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: asd
         with:
-          who-to-greet: 'Mona the Octocat'
-      # 「hello」ステップの出力を使用する
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          config: profile.xml
