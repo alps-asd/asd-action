@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Generates ASD documents
-        uses: koriym/asd-action
+        uses: koriym/asd-action@v1
         id: asd
         with:
           config: profile.xml
