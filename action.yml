@@ -1,16 +1,13 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: app-state-diagram
+description: Produces a full application state diagram and hyperlinked documentation from ALPS profile
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  config:
+    description: Config file
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    default: profile.xml
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: docker
+  image: Dockerfile
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.config }}

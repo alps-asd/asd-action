@@ -1,21 +1,20 @@
-# Hello world docker action
+# app-state-diagram action
 
-このアクションは"Hello World"もしくは"Hello" + ログに挨拶する人物名を出力します。
+This action generates ALPS app-state-diagram.
 
 ## Inputs
 
-## `who-to-greet`
+## `config`
 
-**Required** The name of the person to greet. デフォルトは `"World"`。
+**Required** A config file path. Default: `"profile.xml"`
 
 ## Outputs
 
-## `time`
 
-The time we greeted you.
+## Example
 
-## 使用例
-
-uses: actions/hello-world-docker-action@v1
+```
+uses: koriym/asd-action@v1
 with:
-who-to-greet: 'Mona the Octocat'
+  config: my-profile.xml
+```
