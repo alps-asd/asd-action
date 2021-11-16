@@ -2,7 +2,7 @@
 name: app-state-diagram
 description: Produces a full application state diagram and hyperlinked documentation from ALPS profile
 branding:
-  icon: 'anckor'
+  icon: 'anchor'
   color: 'blue'
 inputs:
   config:
