@@ -5,12 +5,16 @@ branding:
   icon: 'anchor'
   color: 'blue'
 inputs:
+  config:
+    description: Config file
+    required: false
   profile:
     description: Profile file
-    required: true
+    required: false
     default: profile.xml
 runs:
   using: docker
   image: Dockerfile
   args:
     - ${{ inputs.config }}
+    - ${{ inputs.profile }}

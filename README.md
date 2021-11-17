@@ -37,6 +37,7 @@ jobs:
         uses: koriym/asd-action@v1
         id: asd
         with:
+          config: asd.xml
           profile: profile.xml
 
       - name: Deploy
