@@ -37,7 +37,8 @@ jobs:
         uses: koriym/asd-action@v1
         id: asd
         with:
-          config: profile.xml
+          config: asd.xml
+          profile: profile.xml
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

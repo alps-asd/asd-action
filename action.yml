@@ -7,10 +7,14 @@ branding:
 inputs:
   config:
     description: Config file
-    required: true
+    required: false
+  profile:
+    description: Profile file
+    required: false
     default: profile.xml
 runs:
   using: docker
   image: Dockerfile
   args:
     - ${{ inputs.config }}
+    - ${{ inputs.profile }}
