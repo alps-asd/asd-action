@@ -15,9 +15,6 @@ jobs:
 
       - name: Generates ASD documents
         uses: ./ # Uses an action in the root directory
-        id: asd
-        with:
-          profile: profile.xml
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
