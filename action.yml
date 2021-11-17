@@ -5,8 +5,8 @@ branding:
   icon: 'anchor'
   color: 'blue'
 inputs:
-  config:
-    description: Config file
+  profile:
+    description: Profile file
     required: true
     default: profile.xml
 runs:

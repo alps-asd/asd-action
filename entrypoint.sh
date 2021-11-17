@@ -2,5 +2,5 @@
 
 composer require koriym/app-state-diagram
 mkdir asd-public
-mv $1 asd-public/$1
-./vendor/bin/asd --config= asd-public/$1
+mv $1 asd-public/profile.xml
+./vendor/bin/asd asd-public/profile.xml

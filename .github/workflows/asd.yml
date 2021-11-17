@@ -17,7 +17,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: asd
         with:
-          config: profile.xml
+          profile: profile.xml
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
