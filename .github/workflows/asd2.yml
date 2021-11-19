@@ -1,4 +1,4 @@
-name: "Blog1 ASD documents"
+name: "Blgo2 ASD documents"
 
 on:
   ["push", "workflow_dispatch"]
@@ -13,11 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Generates ASD documents for Blog 1
+      - name: Generates ASD documents for Blog 2
         id: asd
         uses: ./ # Uses an action in the root directory
         with:
-          profile: blog/profile.xml
+          profile: blog2/profile.xml
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
