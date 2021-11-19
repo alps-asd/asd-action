@@ -13,12 +13,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Generates ASD documents
-        id: asd
+      - name: Generates ASD documents for Blog 1
+        id: asd1
         uses: ./ # Uses an action in the root directory
+        with:
+          profile: blog/profile.xml
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ steps.asd.outputs.latest_output_dir}}
+          publish_dir: ${{ steps.asd1.outputs.latest_output_dir}}
+          destination_dir: ${{ steps.asd1.outputs.latest_output_dir}}
+    
+      - name: Generates ASD documents for Blog 2
+        id: asd2
+        uses: ./ # Uses an action in the root directory
+        with:
+          profile: blog2/profile.xml
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ steps.asd2.outputs.latest_output_dir}}
+          destination_dir: ${{ steps.asd2.outputs.latest_output_dir}}
+
