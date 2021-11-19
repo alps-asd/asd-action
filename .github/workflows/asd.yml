@@ -14,10 +14,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Generates ASD documents
+        id: asd
         uses: ./ # Uses an action in the root directory
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./asd-public
+          publish_dir: ${{ steps.asd.outputs.latest_output_dir}}
