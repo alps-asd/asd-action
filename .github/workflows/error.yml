@@ -1,0 +1,27 @@
+name: "Error"
+
+on:
+  ["push", "workflow_dispatch"]
+
+jobs:
+  asd:
+    runs-on: ubuntu-latest
+    name: ASD documents
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Error profile
+        id: asd
+        uses: ./ # Uses an action in the root directory
+        with:
+          profile: tests/profile/error.xml
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ steps.asd.outputs.dir}}
+          destination_dir: ${{ steps.asd.outputs.dir}}
+
