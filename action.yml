@@ -14,7 +14,7 @@ inputs:
     default: profile.xml
 runs:
   using: docker
-  image: docker://ghcr.io/koriym/asd-action
+  image: docker://ghcr.io/alps-asd/asd-action
   args:
     - ${{ inputs.config }}
     - ${{ inputs.profile }}

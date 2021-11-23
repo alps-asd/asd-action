@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <asd xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:noNamespaceSchemaLocation="https://koriym.github.io/app-state-diagram/asd.xsd">
+     xsi:noNamespaceSchemaLocation="https://alps-asd.github.io/app-state-diagram/asd.xsd">
     <watch>false</watch>
 </asd>
