@@ -14,7 +14,7 @@ This action generates ALPS app-state-diagram.
 
 ## Start from the skeleton
 
-https://github.com/koriym/alps-skeleton
+https://github.com/alps-asd/alps-skeleton
 
 ## Manual Setup
 
@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Generates ASD documents
-        uses: koriym/asd-action@v1
+        uses: alps-asd/asd-action@v1
         id: asd
         with:
           config: asd.xml
