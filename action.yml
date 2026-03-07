@@ -34,7 +34,7 @@ runs:
 
     - name: Install app-state-diagram
       shell: bash
-      run: npm install -g @alps-asd/app-state-diagram
+      run: npm install -g @alps-asd/app-state-diagram@2.0.0
 
     - name: Generate diagram
       id: generate
@@ -45,19 +45,23 @@ runs:
         LABEL="${{ inputs.label }}"
         OUTPUT="${{ inputs.output }}"
 
-        ARGS=""
+        args=()
         if [ -n "$FORMAT" ] && [ "$FORMAT" != "html" ]; then
-          ARGS="$ARGS -f $FORMAT"
+          args+=(-f "$FORMAT")
         fi
         if [ -n "$LABEL" ] && [ "$LABEL" != "id" ]; then
-          ARGS="$ARGS --label $LABEL"
+          args+=(--label "$LABEL")
         fi
         if [ -n "$OUTPUT" ]; then
-          ARGS="$ARGS -o $OUTPUT"
+          args+=(-o "$OUTPUT")
         fi
 
-        asd $ARGS "$PROFILE"
+        asd "${args[@]}" "$PROFILE"
 
         # Set output directory
-        DIR=$(dirname "$PROFILE")
+        if [ -n "$OUTPUT" ]; then
+          DIR=$(dirname "$OUTPUT")
+        else
+          DIR=$(dirname "$PROFILE")
+        fi
         echo "dir=$DIR" >> "$GITHUB_OUTPUT"
