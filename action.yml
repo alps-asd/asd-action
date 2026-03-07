@@ -1,20 +1,67 @@
 # action.yml
 name: app-state-diagram
-description: Produces a full application state diagram and hyperlinked documentation from ALPS profile
+description: Generates interactive state diagrams and documentation from ALPS profiles
 branding:
   icon: 'anchor'
   color: 'blue'
 inputs:
-  config:
-    description: Config file
-    required: false
   profile:
-    description: Profile file
+    description: ALPS profile file path (JSON or XML)
     required: false
     default: profile.xml
+  format:
+    description: 'Output format: html, svg, dot, mermaid'
+    required: false
+    default: html
+  label:
+    description: 'Label mode: id or title'
+    required: false
+    default: id
+  output:
+    description: Output file path
+    required: false
+outputs:
+  dir:
+    description: Output directory
+    value: ${{ steps.generate.outputs.dir }}
 runs:
-  using: docker
-  image: docker://ghcr.io/alps-asd/asd-action
-  args:
-    - ${{ inputs.config }}
-    - ${{ inputs.profile }}
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install app-state-diagram
+      shell: bash
+      run: npm install -g @alps-asd/app-state-diagram@2.0.0
+
+    - name: Generate diagram
+      id: generate
+      shell: bash
+      run: |
+        PROFILE="${{ inputs.profile }}"
+        FORMAT="${{ inputs.format }}"
+        LABEL="${{ inputs.label }}"
+        OUTPUT="${{ inputs.output }}"
+
+        args=()
+        if [ -n "$FORMAT" ] && [ "$FORMAT" != "html" ]; then
+          args+=(-f "$FORMAT")
+        fi
+        if [ -n "$LABEL" ] && [ "$LABEL" != "id" ]; then
+          args+=(--label "$LABEL")
+        fi
+        if [ -n "$OUTPUT" ]; then
+          args+=(-o "$OUTPUT")
+        fi
+
+        asd "${args[@]}" "$PROFILE"
+
+        # Set output directory
+        if [ -n "$OUTPUT" ]; then
+          DIR=$(dirname "$OUTPUT")
+        else
+          DIR=$(dirname "$PROFILE")
+        fi
+        echo "dir=$DIR" >> "$GITHUB_OUTPUT"
